@@ -27,37 +27,47 @@ Serving the HTML pages.
 Testing the webserver
 
 ## PROGRAM:
+SERVER CODE
 ```
-from http.server import HTTPServer,BaseHTTPRequestHandler
+echo-server.py
 
-content='''
-<!doctype html>
-<html>
-<head>
-<title> My Web Server</title>
-</head>
-<body>
-<h1>Top Five Web Application Development Frameworks</h1>
-<h2>1.Django</h2>
-<h2>2. MEAN Stack</h2>
-<h2>3. React </h2>
-</body>
-</html>
+import socket
 
+HOST = "127.0.0.1"  
+PORT = 65432       
 
-class MyServer(BaseHTTPRequestHandler):
-    def do_GET(self):
-        print("Get request received...")
-        self.send_response(200) 
-        self.send_header("content-type", "text/html")       
-        self.end_headers()
-        self.wfile.write(content.encode())
-
-print("This is my webserver") 
-server_address =('keerthi',2323)
-httpd = HTTPServer(server_address,MyServer)
-httpd.serve_forever()
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.bind((HOST, PORT))      
+    s.listen()                
+    print(f"Server listening on {HOST}:{PORT} ...")
+    conn, addr = s.accept()   
+    with conn:
+        print(f"Connected by {addr}")
+        while True:
+            data = conn.recv(1024)  
+            if not data:        
+                break
+            conn.sendall(data)      
 ```
+CLIENT CODE
+```
+echo-client.py
+
+import socket
+
+HOST = "127.0.0.1"  
+PORT = 65432
+
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.connect((HOST, PORT))         
+    s.sendall(b"Hello, world")      
+    data = s.recv(1024)            
+
+print(f"Received {data!r}")
+
+```
+
+
 ##  Architecture Diagram
 
 ```bash
@@ -87,8 +97,10 @@ httpd.serve_forever()
 
 ## OUTPUT:
 ### CLIENT OUTPUT:
+<img width="802" height="182" alt="image" src="https://github.com/user-attachments/assets/7163cfb2-9281-47b4-98a0-d45f16c0a0fe" />
 
 ### SERVER OUTPUT:
+<img width="802" height="187" alt="image" src="https://github.com/user-attachments/assets/ae40d726-5f82-42f4-8f4d-b7c86b7a15d2" />
 
 ## RESULT:
 The program is executed succesfully
