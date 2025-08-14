@@ -97,10 +97,13 @@ print(f"Received {data!r}")
 
 ## OUTPUT:
 ### CLIENT OUTPUT:
-<img width="802" height="182" alt="image" src="https://github.com/user-attachments/assets/7163cfb2-9281-47b4-98a0-d45f16c0a0fe" />
+
+<img width="937" height="278" alt="Screenshot 2025-08-14 081659" src="https://github.com/user-attachments/assets/f642ae4a-13c9-4f20-9f29-bcc2e09bb700" />
+
 
 ### SERVER OUTPUT:
-<img width="802" height="187" alt="image" src="https://github.com/user-attachments/assets/ae40d726-5f82-42f4-8f4d-b7c86b7a15d2" />
+<img width="756" height="220" alt="Screenshot 2025-08-14 081708" src="https://github.com/user-attachments/assets/f1eec2c3-3eb0-425f-bf69-9dd38bbf633f" />
+
 
 ## RESULT:
 The program is executed succesfully
